@@ -30,7 +30,6 @@ export default {
 				if (params.length) githubUrl += `?${params.join("&")}`;
 
 				const userAgent = request.headers.get("User-Agent") || "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36";
-
 				// Fetch from GitHub
 				const response = await fetch(githubUrl, {
 					headers: {
@@ -48,6 +47,18 @@ export default {
 				const repositories: any[] = [];
 
 				$(".Box article.Box-row").each((index, element) => {
+					const contributors = Array.from($(element).find(">div:nth-child(4)>span:nth-child(4)").children()).map(it => {
+						const username = ($(it).attr('href') + '').slice(1);
+						const link = 'https://github.com/' + username;
+						const avatar = $(it).children().eq(0).attr('src');
+						return {
+							username,
+							link,
+							avatar
+						}
+					});
+					const periodStars = parseInt($(element).find(">div:nth-child(4)>span:nth-child(5)").contents().eq(2).text().replace(/\D+/g, ''));
+
 					const repo = {
 						position: index + 1,
 						name: $(element).find("h2 a").text().trim().replace(/\s+/g, " "),
@@ -56,6 +67,8 @@ export default {
 						stars: $(element).find(".Link--muted:first").text().trim(),
 						forks: $(element).find(".Link--muted:nth-of-type(2)").text().trim(),
 						url: `https://github.com${$(element).find("h2 a").attr("href")}`,
+						contributors,
+						periodStars
 					};
 					repositories.push(repo);
 				});
