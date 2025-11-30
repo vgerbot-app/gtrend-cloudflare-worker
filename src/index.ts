@@ -1,4 +1,5 @@
 import * as cheerio from 'cheerio';
+import { getLandingPage } from './landing';
 
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
@@ -6,9 +7,9 @@ export default {
 
 		// Default route
 		if (url.pathname === "/") {
-			return new Response("System is now functional", {
+			return new Response(getLandingPage(url.origin), {
 				headers: {
-					"Content-Type": "text/plain"
+					"Content-Type": "text/html; charset=UTF-8"
 				}
 			});
 		}
