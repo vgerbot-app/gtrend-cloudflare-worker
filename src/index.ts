@@ -48,7 +48,7 @@ export default {
 				const repositories: any[] = [];
 
 				$(".Box article.Box-row").each((index, element) => {
-					const contributors = Array.from($(element).find(">div:nth-child(4)>span:nth-child(4)").children()).map(it => {
+					const builtBy = Array.from($(element).find(">div:nth-child(4)>span:nth-child(4)").children()).map(it => {
 						const username = ($(it).attr('href') + '').slice(1);
 						const link = 'https://github.com/' + username;
 						const avatar = $(it).children().eq(0).attr('src');
@@ -60,15 +60,17 @@ export default {
 					});
 					const periodStars = parseInt($(element).find(">div:nth-child(4)>span:nth-child(5)").contents().eq(2).text().replace(/\D+/g, ''));
 
+					const [owner, repoName] = $(element).find("h2 a").text().trim().replace(/\s+/g, "").split('/');
+
 					const repo = {
-						position: index + 1,
-						name: $(element).find("h2 a").text().trim().replace(/\s+/g, " "),
+						owner,
+						repoName,
 						description: $(element).find("p").text().trim(),
 						language: $(element).find('[itemprop="programmingLanguage"]').text().trim(),
-						stars: $(element).find(".Link--muted:first").text().trim(),
-						forks: $(element).find(".Link--muted:nth-of-type(2)").text().trim(),
+						stars: parseInt($(element).find(".Link--muted:first").text().trim().replace(/,/g, '')),
+						forks: parseInt($(element).find(".Link--muted:nth-of-type(2)").text().trim().replace(/,/g, '')),
 						url: `https://github.com${$(element).find("h2 a").attr("href")}`,
-						contributors,
+						builtBy,
 						periodStars
 					};
 					repositories.push(repo);
