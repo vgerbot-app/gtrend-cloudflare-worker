@@ -50,11 +50,9 @@ export default {
 				$(".Box article.Box-row").each((index, element) => {
 					const builtBy = Array.from($(element).find(">div:nth-child(4)>span:nth-child(4)").children()).map(it => {
 						const username = ($(it).attr('href') + '').slice(1);
-						const link = 'https://github.com/' + username;
 						const avatar = $(it).children().eq(0).attr('src');
 						return {
 							username,
-							link,
 							avatar
 						}
 					});
@@ -69,7 +67,6 @@ export default {
 						language: $(element).find('[itemprop="programmingLanguage"]').text().trim(),
 						stars: parseInt($(element).find(".Link--muted:first").text().trim().replace(/,/g, '')),
 						forks: parseInt($(element).find(".Link--muted:nth-of-type(2)").text().trim().replace(/,/g, '')),
-						url: `https://github.com${$(element).find("h2 a").attr("href")}`,
 						builtBy,
 						periodStars
 					};
