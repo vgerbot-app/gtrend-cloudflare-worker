@@ -53,7 +53,7 @@ export default {
 						const avatar = $(it).children().eq(0).attr('src');
 						return {
 							username,
-							avatar
+							avatar: avatar.replace('https://avatars.githubusercontent.com', '')
 						}
 					});
 					const periodStars = parseInt($(element).find(">div:nth-child(4)>span:nth-child(5)").contents().eq(2).text().replace(/\D+/g, ''));
@@ -67,6 +67,7 @@ export default {
 						language: $(element).find('[itemprop="programmingLanguage"]').text().trim(),
 						stars: parseInt($(element).find(".Link--muted:first").text().trim().replace(/,/g, '')),
 						forks: parseInt($(element).find(".Link--muted:nth-of-type(2)").text().trim().replace(/,/g, '')),
+						baseAvatarURL: "https://avatars.githubusercontent.com",
 						builtBy,
 						periodStars
 					};
