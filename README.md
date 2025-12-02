@@ -52,12 +52,18 @@ curl "http://localhost:8787/trending?language=typescript&since=weekly"
 [
   {
     "position": 1,
-    "name": "user/repo",
+    "owner": "user",
+    "repoName": "repo",
     "description": "Repository description...",
     "language": "TypeScript",
-    "stars": "1.5k",
-    "forks": "200",
-    "url": "https://github.com/user/repo"
+    "stars": 1500,
+    "forks": 200,
+    "baseAvatarURL": "https://avatars.githubusercontent.com",
+    "builtBy": [{
+    	"username": "xxxx"
+      "avatar": "/u/xxxx?s=40&v=4"
+    }],
+    "periodStars": 15
   }
   // ...
 ]
@@ -107,4 +113,3 @@ pnpm run deploy
 - `src/index.ts`: Main worker logic and API endpoints.
 - `test/`: Tests using Vitest.
 - `wrangler.jsonc`: Cloudflare Wrangler configuration.
-
