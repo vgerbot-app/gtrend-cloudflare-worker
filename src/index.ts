@@ -67,7 +67,6 @@ export default {
 						language: $(element).find('[itemprop="programmingLanguage"]').text().trim(),
 						stars: parseInt($(element).find(".Link--muted:first").text().trim().replace(/,/g, '')),
 						forks: parseInt($(element).find(".Link--muted:nth-of-type(2)").text().trim().replace(/,/g, '')),
-						baseAvatarURL: "https://avatars.githubusercontent.com",
 						builtBy,
 						periodStars
 					};

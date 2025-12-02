@@ -58,7 +58,6 @@ curl "http://localhost:8787/trending?language=typescript&since=weekly"
     "language": "TypeScript",
     "stars": 1500,
     "forks": 200,
-    "baseAvatarURL": "https://avatars.githubusercontent.com",
     "builtBy": [{
     	"username": "xxxx"
       "avatar": "/u/xxxx?s=40&v=4"
