@@ -81,7 +81,7 @@ export default {
 					});
 				}
 
-				return new Response(JSON.stringify(repositories, null, 2), {
+				return new Response(JSON.stringify(repositories), {
 					headers: {
 						"Content-Type": "application/json"
 					}
